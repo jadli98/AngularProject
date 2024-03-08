@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { error } from 'console';
+import { ProductService } from '../services/product.service';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-products',
@@ -8,22 +10,34 @@ import { error } from 'console';
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements OnInit {
-  products: Array<any> = [];
-  handleCheckProduct(product: any) {
-    this.http
-      .patch("http://localhost:8989/products/"+product.id, {
-        checked: !product.checked
-      })
-      .subscribe({
-        next: (updatedProduct) => {
-          product.checked = !product.checked;
-        },
-      });
+  products!: Array<Product>;
+  handleCheckProduct(product: Product) {
+    this.productService.checkProduct(product).subscribe({
+      next: (updatedProduct) => {
+        product.checked = !product.checked;
+      },
+    });
   }
-
-  constructor(private http: HttpClient) {}
+  handleDelete(product: Product) {
+    this.productService.deleteProduct(product).subscribe({
+      next: (value) => {
+        this.getProducts();
+      },
+    });
+  }
+  getProducts() {
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+  constructor(private productService: ProductService) {}
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:8989/products').subscribe({
+    this.productService.getProducts().subscribe({
       next: (data) => {
         this.products = data;
       },

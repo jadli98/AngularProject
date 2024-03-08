@@ -18,11 +18,20 @@
               {{ product.price }}
             </td>
             <td>
-            <button (click)="handleCheckProduct(product)" class="btn btn-outline-success">
-                <i [class]="product.checked? 'bi bi-check':'bi bi-circle'" >
+              <button
+                (click)="handleCheckProduct(product)"
+                class="btn btn-outline-success"
+              >
+                <i [class]="product.checked ? 'bi bi-check' : 'bi bi-circle'">
                 </i>
-            </button>
-        </td>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-outline-danger" (click)="handleDelete(product)">
+                <i class="bi bi-trash">                  
+                </i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

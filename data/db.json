@@ -1,28 +1,16 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "comuter",
-      "price": 5200,
-      "checked": false
-    },
-    {
       "id": "2",
       "name": "phone",
       "price": 2200,
-      "checked": true
+      "checked": false
     },
     {
       "id": "3",
       "name": "printer",
       "price": 2400,
       "checked": true
-    },
-    {
-      "id": "4",
-      "name": "watch",
-      "price": 3600,
-      "checked": false
     }
   ]
 }
