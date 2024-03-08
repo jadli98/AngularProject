@@ -16,13 +16,13 @@
       "id": "3",
       "name": "printer",
       "price": 2400,
-      "checked": false
+      "checked": true
     },
     {
       "id": "4",
       "name": "watch",
       "price": 3600,
-      "checked": true
+      "checked": false
     }
   ]
 }
