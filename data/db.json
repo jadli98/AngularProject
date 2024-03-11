@@ -1,16 +1,52 @@
 {
   "products": [
     {
-      "id": "2",
+      "id": "1",
       "name": "phone",
       "price": 2200,
+      "checked": true
+    },
+    {
+      "id": "2",
+      "name": "computer",
+      "price": 2000,
       "checked": false
     },
     {
       "id": "3",
       "name": "printer",
-      "price": 2400,
+      "price": 4200,
+      "checked": false
+    },
+    {
+      "id": "4",
+      "name": "watch",
+      "price": 3500,
       "checked": true
+    },
+    {
+      "name": "ee",
+      "price": "22",
+      "checked": false,
+      "id": "nkMLu7h"
+    },
+    {
+      "name": "ee",
+      "price": "22",
+      "checked": false,
+      "id": "SU6akpU"
+    },
+    {
+      "name": "ee",
+      "price": "22",
+      "checked": false,
+      "id": "oAA30WE"
+    },
+    {
+      "name": "ee",
+      "price": "22",
+      "checked": false,
+      "id": "I3O9YPX"
     }
   ]
 }

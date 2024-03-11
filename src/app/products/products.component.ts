@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { error } from 'console';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
+import { Observable } from 'rxjs';
+import { validateHeaderName } from 'http';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +13,8 @@ import { Product } from '../models/product.model';
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements OnInit {
-  products!: Array<Product>;
+  public products!: Array<Product>;
+  public keyword : string = "";
   handleCheckProduct(product: Product) {
     this.productService.checkProduct(product).subscribe({
       next: (updatedProduct) => {
@@ -19,14 +23,22 @@ export class ProductsComponent implements OnInit {
     });
   }
   handleDelete(product: Product) {
+    if(confirm("Etes vous sure ?"))
     this.productService.deleteProduct(product).subscribe({
       next: (value) => {
-        this.getProducts();
+        this.getProducts(); 
       },
     });
   }
+  searchProduct(){
+    this.productService.searchProduct(this.keyword).subscribe({
+      next : value =>{
+        this.products = value ;
+      }
+    })
+  }
   getProducts() {
-    this.productService.getProducts().subscribe({
+    this.productService.getProducts(0 , 1005).subscribe({
       next: (data) => {
         this.products = data;
       },
@@ -37,13 +49,6 @@ export class ProductsComponent implements OnInit {
   }
   constructor(private productService: ProductService) {}
   ngOnInit(): void {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+   this.getProducts();
   }
 }
